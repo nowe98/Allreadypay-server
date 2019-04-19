@@ -1,0 +1,19 @@
+{
+  "name": "my-app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "aws-sdk": "latest",
+    "body-parser": "latest",
+    "dotenv": "^7.0.0",
+    "ejs": "latest",
+    "express": "latest",
+    "mysql": "latest"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
