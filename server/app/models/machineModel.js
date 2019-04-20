@@ -13,4 +13,6 @@ const Machine = function(machine){
     this.Sales = machine.Sales;
 };
 
+
+
 module.exports= Machine;

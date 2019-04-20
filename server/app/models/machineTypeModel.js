@@ -10,4 +10,4 @@ const Type_machine = function(typemachine){
 
 
 
-module.exports= Machine;
+module.exports= Type_machine;

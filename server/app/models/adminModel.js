@@ -5,9 +5,10 @@ const sql = require('../../config/db.js');
 const Admin = function(admin){
     this.AdminID = admin.AdminID;
     this.Pass = admin.Pass;
-//    this.point = user.point;
     this.FirstName = admin.FirstName;
     this.LastName = admin.LastName;
     this.Sex = admin.Sex;
     this.Email = admin.Email;
 };
+
+module.exports = Admin;
