@@ -1,5 +1,5 @@
 'user strict';
-const sql = require('./db.js');
+const sql = require('../../config/db.js');
 
 //Task object constructor
 const User = function(user){
@@ -51,8 +51,9 @@ User.getAllUser = function getAllUser(result) {
         }
     });
 };
-User.updateById = function(user, result) {
-    sql.query("UPDATE usertable SET FirstName = ?, LastName = ? WHERE MobileNum = ?",[user.FirstName, user.LastName, user.MobileNum], function(err, res) {
+
+User.updateById = function(MobileNum,user, result) {
+    sql.query("UPDATE usertable SET FirstName = ?, LastName = ? WHERE MobileNum = ?",[user.FirstName, user.LastName, MobileNum], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);
@@ -61,6 +62,17 @@ User.updateById = function(user, result) {
             result(null, res);
         }        
     });
+};
+
+User.validate = function(user, result){
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            if(this.MobileNum==user.MobileNum&&this.Pass==user.Pass)
+            result(null,1);
+        }
 };
 User.delete = function(id, result) {
     sql.query("DELETE FROM usertable WHERE MobileNum=?",id,function(err, res) {

@@ -1,14 +1,18 @@
 'use strict';
-module.exports = function(app) {
-  var todoList = require('../controllers/userController');
+const express = require('express')
+const userController = require('../controllers/userController');
 
-// todoList Routes
-  app.route('/users')
-    .get(todoList.list_all_users)
-    .post(todoList.create_user);
+const router = express.Router()
+
+
+router.route('/')
+  .get(userController.list_all_users)
+  .post(userController.create_user);
    
-  app.route('/users/:userID')
-    .get(todoList.read_a_user)
-    .put(todoList.update_a_user)
-    .delete(todoList.delete_a_user);
-};
+router.route('/:MobileNum')
+  .get(userController.read_a_user)
+  .put(userController.update_a_user)
+  .delete(userController.delete_a_user);
+
+
+module.exports = router

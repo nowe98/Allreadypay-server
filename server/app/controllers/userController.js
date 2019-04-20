@@ -17,7 +17,7 @@ exports.create_user = function(req, res) {
     const new_user = new User(req.body);
   
     //handles null error 
-    if(!new_user.UserID || !new_user.Pass){ 
+    if(!new_user.MobileNum || !new_user.Pass){ 
         res.status(400).send({ error:true, message: 'Please provide information' });
     }
     else{
@@ -30,15 +30,15 @@ exports.create_user = function(req, res) {
 }
 
 exports.read_a_user = function(req, res) {
-    User.getUserById(req.params.UserID, function(err, user) {
+    User.getUserById(req.params.MobileNum, function(err, user) {
       if (err)
         res.send(err);
-      res.json(user);
+      res.json(user[0]);
     })
 }
 
 exports.update_a_user = function(req, res) {
-    User.updateById(req.params.UserID, new User(req.body), function(err, user) {
+    User.updateById(req.params.MobileNum, new User(req.body), function(err, user) {
       if (err)
         res.send(err);
       res.json(user);
@@ -46,7 +46,7 @@ exports.update_a_user = function(req, res) {
 }
 
 exports.delete_a_user = function(req, res) {
-    User.remove( req.params.UserID, function(err, user) {
+    User.remove( req.params.MobileNum, function(err, user) {
       if (err)
         res.send(err);
       res.json({ message: 'User successfully deleted' });

@@ -1,5 +1,5 @@
 'user strict';
-var sql = require('./db.js');
+var sql = require('../../config/db.js');
 
 //Task object constructor
 var Task = function(task){
@@ -58,7 +58,7 @@ Task.updateById = function(id, task, result){
             }); 
 };
 Task.remove = function(id, result){
-     sql.query("DELETE FROM tasks WHERE id = ?", [id], function (err, res) {
+     sql.query("DELETE FROM tasks WHERE id = ?", id, function (err, res) {
 
                 if(err) {
                     console.log("error: ", err);

@@ -6,6 +6,7 @@ create table if not exists usertable(
     FirstName varchar(20) ,
     LastName varchar(20),
     Sex tinyint(1),
+    ppoint tinyint(5) not null default 0,
     Email varchar(50)
 	
 );
@@ -16,12 +17,12 @@ create table if not exists machine(
 	MachineID varchar(50) not null primary key,
     MachineName varchar(50),
     Location varchar(50),
-    ManufacturedDate timestamp,
+    ManufacturedDate datetime,
     Sales smallint(6),
     mstatus tinyint(1),
-    UserID varchar(20), 
+    AdminID varchar(20), 
     MachineType varchar(30),
-    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP on update current_timestamp,
     CONSTRAINT AdminID FOREIGN KEY (AdminID)
     REFERENCES Admin(AdminID),
     CONSTRAINT MachineType foreign key (MachineType)
@@ -49,7 +50,7 @@ create table if not exists slot(
 create table if not exists admin(
 	AdminID varchar(20) not null primary key,
     Pass varchar(20) not null,
-    level tinyint(1),
+    llevel tinyint(1),
     FirstName varchar(20),
     LastName varchar(20),
     Sex tinyint(1),
@@ -75,10 +76,10 @@ create table if not exists promotionRegular(
     ProPrice tinyint(5),
     ProPoint tinyint(5),
     Description varchar(50),
-    StartDate timestamp,
-    EndDate timestamp,
-    StartTime timestamp,
-    EndTime timestamp,    
+    StartDate datetime,
+    EndDate datetime,
+    StartTime datetime,
+    EndTime datetime,    
     ProductID varchar(20),
     AdminID varchar(20),
     CONSTRAINT ProductID foreign key (ProductID)
@@ -93,10 +94,10 @@ create table if not exists promotionMember(
     ProPrice tinyint(5),
     ProPoint tinyint(5),
     Description varchar(50),
-    StartDate timestamp,
-    EndDate timestamp,
-    StartTime timestamp,
-    EndTime timestamp,    
+    StartDate datetime,
+    EndDate datetime,
+    StartTime datetime,
+    EndTime datetime,     
     ProductID varchar(20),
     AdminID varchar(20),
     CONSTRAINT ProductID foreign key (ProductID)
@@ -110,16 +111,16 @@ create table if not exists eventtable(
     EventName varchar(20),
     Description varchar(20),
     Picture varchar(50),
-    StartDate timestamp,
-    EndDate timestamp,
-    CreateDate timestamp,
+    StartDate datetime,
+    EndDate datetime,
+    CreateDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     AdminID varchar(20),
     CONSTRAINT AdminID foreign key (AdminID)
     references admin(AdminID)
 
 );
 
-create table if not exists Recent(
+create table if not exists recent(
 	RecentID varchar(20) not null primary key,
     Time_stamp timestamp,
     MobileNum varchar(20),
@@ -132,6 +133,16 @@ create table if not exists Recent(
     CONSTRAINT MachineID foreign key (MachineID)
     references Machine(MachineID)
 
-)
+);
 
+create table if not exists comments(
+	CommentID varchar(20) not null primary key,
+    Topic varchar(20),
+    ProductID varchar(20),
+    MachineID varchar(20),
+    CONSTRAINT ProductID foreign key (ProductID)
+    references Product(ProductID),
+    CONSTRAINT MachineID foreign key (MachineID)
+    references Machine(MachineID)    
+);
 SELECT * FROM usertable;
