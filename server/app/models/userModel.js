@@ -11,7 +11,7 @@ const User = function(user){
     this.Sex = user.Sex;
     this.Email = user.Email;
 };
-User.createUser = function createUser(newUser, result) {
+User.createUser = function (newUser, result) {
     sql.query("INSERT INTO usertable set ?", newUser, function(err, res) {
 
         if(err) {
@@ -38,7 +38,7 @@ User.getUserById = function (MobileNum, result) {
     });
 };
 
-User.getAllUser = function getAllUser(result) {
+User.getAllUser = function (result) {
     sql.query("SELECT * FROM usertable", function (err, res) {
         if(err) {
             console.log("error: ", err);

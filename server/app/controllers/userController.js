@@ -46,7 +46,7 @@ exports.update_a_user = function(req, res) {
 }
 
 exports.delete_a_user = function(req, res) {
-    User.remove( req.params.MobileNum, function(err, user) {
+    User.delete( req.params.MobileNum, function(err, user) {
       if (err)
         res.send(err);
       res.json({ message: 'User successfully deleted' });
