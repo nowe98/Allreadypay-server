@@ -16,7 +16,7 @@ INSERT INTO usertable (MobileNum, Pass, FirstName, LastName, Sex,Email) VALUES
 create table if not exists machine(
 	MachineID varchar(50) not null primary key,
     MachineName varchar(50),
-    Location varchar(50),
+    LLocation varchar(50),
     ManufacturedDate datetime,
     Sales smallint(6),
     mstatus tinyint(1),
