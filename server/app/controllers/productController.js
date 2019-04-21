@@ -1,6 +1,6 @@
 'use strict'
 
-const Product = require('../models/ProductModel');
+const Product = require('../models/productModel');
 
 exports.list_all_products = function (req, res) {
     Product.getAllProduct(function(err, product) {
