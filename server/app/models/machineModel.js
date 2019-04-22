@@ -4,8 +4,8 @@ const sql = require('../../config/db.js');
 //Task object constructor
 const Machine = function(machine){
     this.MachineID = machine.MachineID;
-    this.MachineName = machine.MachineName;
-    this.Location = machine.Location;
+    this.PlaceID = machine.PlaceID;
+    this.Description = machine.Description;
     this.ManufacturedDate = machine.ManufacturedDate;
     this.mstatus = machine.mstatus;
     this.AdminID = machine.AdminID;
@@ -38,7 +38,7 @@ Machine.getMachineById = function (id, result) {
     });
 };
 
-Machine.getAllmachine = function (result) {
+Machine.getAllMachines = function (result) {
     sql.query("SELECT * FROM machine", function (err, res) {
         if(err) {
             console.log("error: ", err);

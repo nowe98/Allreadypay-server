@@ -14,37 +14,33 @@ INSERT INTO usertable (MobileNum, Pass, FirstName, LastName, Sex,Email) VALUES
 ('0800000000','1234','Lagna','Nowe', 0 ,'abc@g.com');
 
 create table if not exists machine(
-	MachineID varchar(50) not null primary key,
-    MachineName varchar(50),
-    LLocation varchar(50),
+	MachineID tinyint(10) not null primary key,
+    Description varchar(50),
+    PlaceID tinyint(10),
     ManufacturedDate datetime,
     Sales smallint(6),
     mstatus tinyint(1),
     AdminID varchar(20), 
-    MachineType varchar(30),
+    MachineType tinyint(10),
     created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP on update current_timestamp,
-    CONSTRAINT AdminID FOREIGN KEY (AdminID)
-    REFERENCES Admin(AdminID),
-    CONSTRAINT MachineType foreign key (MachineType)
-    references type_machine(MachineType)
+    CONSTRAINT AdminID FOREIGN KEY (AdminID) REFERENCES admin(AdminID),
+    constraint MachineType foreign key (MachineType) references type_machine(MachineType)
 );
 
 create table if not exists type_machine(
-	MachineType varchar(30) not null primary key,
+	MachineType tinyint(10) not null primary key,
     Slots tinyint(5),
     CapacityPerBlock tinyint(5)
 
 );
 
 create table if not exists slot(
-	MachineID varchar(20) not null,
+	MachineID tinyint(10) not null,
     NumberSlot tinyint(5) not null,
-    ProductID varchar(20),
+    ProductID tinyint(10),
     primary key(MachineID, NumberSlot),
-    CONSTRAINT MachineID foreign key (MachineID)
-    references machine(MachineID),
-    CONSTRAINT ProductID foreign key (ProductID)
-    references product(ProductID)
+    foreign key (MachineID) references machine(MachineID),
+    foreign key (ProductID) references product(ProductID)
 );
 
 create table if not exists admin(
@@ -55,6 +51,13 @@ create table if not exists admin(
     LastName varchar(20),
     Sex tinyint(1),
     Email varchar(50)
+);
+
+create table if not exists place(
+	PlaceID tinyint(10) not null primary key,
+    Description tinyint(10),
+    latitude float(10,6),
+    longitude float(10,6)
 );
 
 create table if not exists product(
@@ -123,15 +126,15 @@ create table if not exists eventtable(
 create table if not exists recent(
 	RecentID varchar(20) not null primary key,
     Time_stamp timestamp,
-    MobileNum varchar(20),
-    ProductID varchar(20),
-    MachineID varchar(20),
+    MobileNum varchar(10),
+    ProductID tinyint(10),
+    MachineID tinyint(20),
     CONSTRAINT UserID foreign key (MoblieNum)
     references usertable(MobileNum),
     CONSTRAINT ProductID foreign key (ProductID)
-    references Product(ProductID),
+    references product(ProductID),
     CONSTRAINT MachineID foreign key (MachineID)
-    references Machine(MachineID)
+    references machine(MachineID)
 
 );
 
@@ -141,8 +144,8 @@ create table if not exists comments(
     ProductID varchar(20),
     MachineID varchar(20),
     CONSTRAINT ProductID foreign key (ProductID)
-    references Product(ProductID),
+    references product(ProductID),
     CONSTRAINT MachineID foreign key (MachineID)
-    references Machine(MachineID)    
+    references machine(MachineID)    
 );
 SELECT * FROM usertable;

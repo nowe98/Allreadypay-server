@@ -3,13 +3,23 @@
 const Machine = require('../models/machineModel');
 
 exports.list_all_machines = function (req, res) {
-    Machine.getAllMachine(function(err, machine) {
+    Machine.getAllMachines(function(err, machines) {
 
-        console.log('controller')
-        if (err)
-            res.send(err);
-        console.log('res', machine);
-        res.send(machine);
+      console.log('machine controller')
+      if (err)
+          res.send(err);
+
+      const newmachines = machines.map((machine) => ({
+        vending_ID: machine.MachineID,
+        vending_type: machine.MachineType,
+        place_ID:machine.PlaceID,
+        Description: machine.Description,
+        status: machine.mstatus
+
+      }));
+      
+      console.log('res', newmachines);
+      res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":newmachines});
     });
 };
 
