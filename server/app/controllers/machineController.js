@@ -19,7 +19,7 @@ exports.list_all_machines = function (req, res) {
       }));
       
       console.log('res', newmachines);
-      res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":newmachines});
+      res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":newmachines});
     });
 };
 
