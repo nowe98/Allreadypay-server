@@ -9,13 +9,17 @@ const approutes = require('./approutes')
 const userroutes = require('./userroutes')
 const productroutes = require('./productroutes')
 const machineroutes = require('./machineroutes')
+const typeroutes = require('./machineTyperoutes')
 const placeroutes = require('./placeroutes')
+const slotroutes = require('./slotroutes')
 
 router.use('/tasks',approutes)
 router.use('/users',userroutes)
 router.use('/products',productroutes)
-router.use('/machine',machineroutes)
-router.use('/place',placeroutes)
+router.use('/machines',machineroutes)
+router.use('/places',placeroutes)
+router.use('/types',typeroutes)
+router.use('/slots',slotroutes)
 
 
 module.exports =router

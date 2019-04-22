@@ -5,7 +5,7 @@ const sql = require('../../config/db.js');
 const Type_machine = function(typemachine){
     this.MachineType = typemachine.MachineType;
     this.Slots = typemachine.Slots;
-    this.CapacityPerBlocks = typemachine.CapacityPerBlocks;
+    this.CapacityPerBlock = typemachine.CapacityPerBlock;
 };
 
 Type_machine.createTypeMachine = function(newtype,result){
