@@ -3,16 +3,25 @@
 const Product = require('../models/productModel');
 
 exports.list_all_products = function (req, res) {
-    Product.getAllProduct(function(err, product) {
+    Product.getAllProduct(function(err, products) {
 
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', product);
-        res.send(product);
-    });
-};
 
+        var newproducts = products.map((product) => ({
+          product_ID: product.ProductID,
+          productDescription: product.ProductName,
+          ImgURL: product.Picture,
+          price: product.Price,
+          Promotion: "-"
+        }));
+        
+        console.log('res', newproducts);
+        res.json({"status":200,"message":"Data fetched successfully!", "ProductList":newproducts});
+
+});
+};
 exports.create_product = function(req, res) {
     const new_product = new Product(req.body);
   

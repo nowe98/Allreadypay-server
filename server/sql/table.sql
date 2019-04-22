@@ -58,7 +58,7 @@ create table if not exists admin(
 );
 
 create table if not exists product(
-	ProductID varchar(20) not null primary key,
+	ProductID tinyint(10) not null primary key,
     ProductName varchar(20) not null,
     Picture varchar(50),
     Price tinyint(5),
