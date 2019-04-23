@@ -10,9 +10,9 @@ create table if not exists usertable(
     Email varchar(50)
 	
 );
-INSERT INTO usertable (MobileNum, Pass, FirstName, LastName, Sex,Email) VALUES
-('0800000000','1234','Lagna','Nowe', 0 ,'abc@g.com');
 
+drop table machine;
+drop table slot;
 create table if not exists machine(
 	MachineID tinyint(10) not null primary key,
     Description varchar(50),
@@ -23,8 +23,8 @@ create table if not exists machine(
     AdminID varchar(20), 
     MachineType tinyint(10),
     created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP on update current_timestamp,
-    CONSTRAINT AdminID FOREIGN KEY (AdminID) REFERENCES admin(AdminID),
-    constraint MachineType foreign key (MachineType) references type_machine(MachineType)
+    FOREIGN KEY (AdminID) REFERENCES admin(AdminID),
+    foreign key (MachineType) references type_machine(MachineType)
 );
 
 create table if not exists type_machine(
