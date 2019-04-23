@@ -74,6 +74,15 @@ Machine.updateById = function(MachineID,machine, result) {
 };
 
 Machine.delete = function(id, result) {
+    sql.query("DELETE FROM slot WHERE MachineID = ?",id,function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            console.log(res);
+        } 
+    });
     sql.query("DELETE FROM machine WHERE MachineID = ?",id,function(err, res) {
         if(err) {
             console.log("error: ", err);
