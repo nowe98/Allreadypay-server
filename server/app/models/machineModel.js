@@ -24,7 +24,7 @@ Machine.createMachine = function(newMachine,result){
             result(null, res.insertId);
         }
     })
-    sql.query("CALL add_slot( ?, ?) ", newMachine.MachineID,newMachine.MachineType, function(err,res){
+    sql.query("CALL add_slot( ?, ? ) ", newMachine.MachineID,newMachine.MachineType, function(err,res){
         if(err) {
             console.log("error: ", err);
             result(err,null);

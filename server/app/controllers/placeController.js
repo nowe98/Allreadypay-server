@@ -8,16 +8,9 @@ exports.list_all_places = function (req, res) {
         console.log('Place controller')
         if (err)
             res.send(err);
-
-        const newplaces = places.map((place) => ({
-          ID: place.PlaceID,
-          Description:place.Description,
-          lat: place.latitude,
-          long: place.longitude
-        }));
         
         console.log('res', newplaces);
-        res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":newplaces});
+        res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":places});
 
 });
 };

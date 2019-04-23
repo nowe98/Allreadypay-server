@@ -4,7 +4,7 @@ const sql = require('../../config/db')
 
 const Place = function(place){
     this.PlaceID = place.PlaceID;
-    this.Description = place.Description;
+    this.PlaceName = place.PlaceName;
     this.latitude = place.latitude;
     this.longitude = place.longitude;
 }

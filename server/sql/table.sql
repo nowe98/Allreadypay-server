@@ -55,15 +55,15 @@ create table if not exists admin(
 
 create table if not exists place(
 	PlaceID tinyint(10) not null primary key,
-    Description tinyint(10),
+	PlaceName varchar(50),
     latitude float(10,6),
     longitude float(10,6)
 );
-
+drop table place;
 create table if not exists product(
 	ProductID tinyint(10) not null primary key,
     ProductName varchar(20) not null,
-    Picture varchar(50),
+    Picture varchar(100),
     Price tinyint(5),
     PPoint tinyint(5),
     Volume tinyint(5),
