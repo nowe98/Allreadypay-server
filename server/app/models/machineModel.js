@@ -14,17 +14,16 @@ const Machine = function(machine){
 };
 
 Machine.createMachine = function(newMachine,result){
-    sql.query("INSERT INTO machine set ?",newMachine,function(err,res){
+    sql.query("INSERT INTO machine set ? ;",newMachine,function(err,res){
         if(err) {
             console.log("error: ", err);
             result(err,null);
         }
         else {
             console.log(res.insertId);
-            result(null, res.insertId);
         }
     })
-    sql.query("CALL add_slot( ?, ? ) ", newMachine.MachineID,newMachine.MachineType, function(err,res){
+    sql.query("CALL add_slot(?, ?);", [newMachine.MachineID, newMachine.MachineType], function(err,res){
         if(err) {
             console.log("error: ", err);
             result(err,null);
