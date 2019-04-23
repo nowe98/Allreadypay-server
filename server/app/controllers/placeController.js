@@ -9,7 +9,7 @@ exports.list_all_places = function (req, res) {
         if (err)
             res.send(err);
         
-        console.log('res', newplaces);
+        console.log('res', places);
         res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":places});
 
 });
