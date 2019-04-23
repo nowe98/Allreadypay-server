@@ -52,6 +52,6 @@ exports.delete_a_place = function(req, res) {
     Place.delete( req.params.PlaceID, function(err, place) {
       if (err)
         res.send(err);
-      res.json({ message: 'User successfully deleted' });
+      res.json({ message: 'Place successfully deleted' });
     })
 }

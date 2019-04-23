@@ -12,6 +12,7 @@ const machineroutes = require('./machineroutes')
 const typeroutes = require('./machineTyperoutes')
 const placeroutes = require('./placeroutes')
 const slotroutes = require('./slotroutes')
+const adminroutes = require('./adminroutes')
 
 router.use('/tasks',approutes)
 router.use('/users',userroutes)
@@ -20,6 +21,7 @@ router.use('/machines',machineroutes)
 router.use('/places',placeroutes)
 router.use('/types',typeroutes)
 router.use('/slots',slotroutes)
+router.use('/admins',adminroutes)
 
 
 module.exports =router

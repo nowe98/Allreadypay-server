@@ -43,6 +43,6 @@ exports.delete_a_type = function(req, res) {
     Type.delete( req.params.MachineType, function(err, type) {
       if (err)
         res.send(err);
-      res.json({ message: 'User successfully deleted' });
+      res.json({ message: 'Type successfully deleted' });
     })
 }

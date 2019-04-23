@@ -59,6 +59,6 @@ exports.delete_a_machine = function(req, res) {
     Machine.delete( req.params.MachineID, function(err, machine) {
       if (err)
         res.send(err);
-      res.json({ message: 'User successfully deleted' });
+      res.json({ message: 'Machine successfully deleted' });
     })
 }
