@@ -17,3 +17,6 @@ INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
 (5, 'Push to prod', 1, '2016-04-10 23:50:50');
 
 SELECT * FROM place;
+
+alter table machine add MachineName varchar(50);
+alter table machine drop column vending_name ;

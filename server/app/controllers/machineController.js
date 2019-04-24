@@ -13,7 +13,7 @@ exports.list_all_machines = function (req, res) {
         vending_ID: machine.MachineID,
         vending_type: machine.MachineType,
         place_ID:machine.PlaceID,
-        Description: machine.Description,
+        vending_name: machine.MachineName,
         status: machine.mstatus
 
       }));
