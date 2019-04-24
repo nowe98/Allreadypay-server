@@ -4,12 +4,12 @@ const sql = require('../../config/db.js');
 //Task object constructor
 const Recent = function(recent){
     this.RecentID = recent.RecentID;
-    this.TimeStamp = recent.TimeStamp;
+    this.MobileNum = recent.MobileNum;
     this.ProductID = recent.ProductID;
     this.MachineID = recent.MachineID;
 };
 
-Recent.createRecent = function(newPlace,result){
+Recent.createRecent = function(newRecent,result){
     sql.query("INSERT INTO recent set ?",newRecent,function(err,res){
         if(err) {
             console.log("error: ", err);
@@ -22,8 +22,8 @@ Recent.createRecent = function(newPlace,result){
     })
 };
 
-Recent.getRecentById = function (RecentID, result) {
-    sql.query("SELECT * FROM recent where RecentID = ?", RecentID, function(err, res) {
+Recent.getRecentById = function (id, result) {
+    sql.query("SELECT * FROM recent where RecentID = ?", id, function(err, res) {
         if(err) {
             console.log("error: ", err);
             result (err, null);
