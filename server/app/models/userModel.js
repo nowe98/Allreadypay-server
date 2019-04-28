@@ -5,13 +5,14 @@ const sql = require('../../config/db.js');
 const User = function(user){
     this.MobileNum = user.MobileNum;
     this.Pass = user.Pass;
-    this.point = user.point;
+    this.Ppoint = user.Ppoint;
     this.FirstName = user.FirstName;
     this.LastName = user.LastName;
     this.Sex = user.Sex;
     this.Email = user.Email;
 };
 User.createUser = function (newUser, result) {
+    newUser.Ppoint=0;
     sql.query("INSERT INTO usertable set ?", newUser, function(err, res) {
 
         if(err) {

@@ -6,7 +6,7 @@ create table if not exists usertable(
     FirstName varchar(20) ,
     LastName varchar(20),
     Sex tinyint(1),
-    ppoint tinyint(5) not null default 0,
+    Ppoint tinyint(5) default 0,
     Email varchar(50)
 	
 );
