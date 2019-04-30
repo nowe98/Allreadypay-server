@@ -25,7 +25,7 @@ exports.create_recent = function(req, res) {
         Recent.createRecent(new_recent, function(err,r) {
             if (err)
                 res.send(err);
-            res.json(r);
+            res.json({"status":200,"message":"Add table complete."});
         });
   }
 };

@@ -17,6 +17,8 @@ const Product = function(product){
 };
 
 Product.createProduct = function(newProduct,result){
+    if(!newProduct.PPoint)
+        newProduct.PPoint=0;
     sql.query("INSERT INTO product set ?",newProduct,function(err,res){
         if(err) {
             console.log("error: ", err);
@@ -77,5 +79,17 @@ Product.delete = function(id, result) {
         } 
     });
 };
+
+Product.getProductByMachine = function(id, result) {
+    sql.query("CALL get_productInMachine(?)",id,function(err, res) {
+        if(err) {
+            console.log("error: ",err);
+            result(null, err);
+        }
+        else {
+            result(null, res);
+        }
+    })
+}
 
 module.exports = Product;

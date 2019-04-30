@@ -14,5 +14,8 @@ router.route('/:ProductID')
   .put(productController.update_a_product)
   .delete(productController.delete_a_product);
 
+router.route('/machine/:MachineID')
+  .get(productController.list_product_by_machine)
+
 
 module.exports = router

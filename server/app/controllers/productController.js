@@ -61,3 +61,23 @@ exports.delete_a_product = function(req, res) {
       res.json({ message: 'User successfully deleted' });
     })
 }
+
+exports.list_product_by_machine = function(req, res) {
+  Product.getProductByMachine(req.params.MachineID, function(err, products) {
+    console.log('controller')
+        if (err)
+            res.send(err);
+
+        var newproducts = products[0].map((product) => ({
+          product_ID: product.ProductID,
+          productDescription: product.ProductName,
+          ImgURL: product.Picture,
+          price: product.Price,
+          Promotion: "-"
+        }));
+        
+        console.log('res', newproducts);
+        res.json({"status":200,"message":"Data fetched successfully!", "ProductList":newproducts});
+
+  })
+}
