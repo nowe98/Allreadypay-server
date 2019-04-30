@@ -8,10 +8,12 @@
     "dotenv": "^7.0.0",
     "ejs": "latest",
     "express": "latest",
-    "mysql": "latest"
+    "mysql": "latest",
+    "socket.io": "^2.2.0"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test" : "node app.js"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
