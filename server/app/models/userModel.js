@@ -1,5 +1,6 @@
 'user strict';
 const sql = require('../../config/db.js');
+const crypto = require('crypto')
 
 //Task object constructor
 const User = function(user){
@@ -10,9 +11,12 @@ const User = function(user){
     this.LastName = user.LastName;
     this.Sex = user.Sex;
     this.Email = user.Email;
+    this.hash = user.hash;
+    this.salt = user.salt
 };
 User.createUser = function (newUser, result) {
     newUser.Ppoint=0;
+    newUser = User.setpassword(newUser);
     sql.query("INSERT INTO usertable set ?", newUser, function(err, res) {
 
         if(err) {
@@ -64,16 +68,18 @@ User.updateById = function(MobileNum,user, result) {
     });
 };
 
-User.validate = function(user, result){
-        if(err) {
-            console.log("error: ", err);
-            result(null,err);
-        }
-        else {
-            if(this.MobileNum==user.MobileNum&&this.Pass==user.Pass)
-            result(null,1);
-        }
+User.setpassword = function(user) {
+    user.salt = crypto.randomBytes(16).toString('hex');
+    user.hash = crypto.pbkdf2Sync(user.Pass, user.salt, 10000, 512, 'sha512').toString('hex');
+    return user;
 };
+
+
+User.validatePassword = function(user,password) {
+    const hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
+    return user.hash === hash;
+  };
+  
 User.delete = function(id, result) {
     sql.query("DELETE FROM usertable WHERE MobileNum=?",id,function(err, res) {
         if(err) {
@@ -85,5 +91,6 @@ User.delete = function(id, result) {
         } 
     });
 };
+
 
 module.exports= User;
