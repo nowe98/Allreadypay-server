@@ -23,7 +23,7 @@ SET @@session.time_zone = "+07:00";
 SELECT NOW();
 
 alter table usertable add Ppoint tinyint(5) default 0;
-alter table usertable drop column ppoint ;
+alter table usertable drop column Ppoint ;
 select * from usertable;
 
 alter table machine add MachineName varchar(50);

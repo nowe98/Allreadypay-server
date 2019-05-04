@@ -1,6 +1,7 @@
 'use strict'
 
-const User = require('../models/userModel');
+const User = require('../models/userModel')
+
 
 exports.list_all_users = function (req, res) {
     User.getAllUser(function(err, user) {
@@ -20,6 +21,7 @@ exports.create_user = function(req, res) {
     if(!new_user.MobileNum || !new_user.Pass){ 
         res.status(400).send({ error:true, message: 'Please provide information' });
     }
+    
     else{
         User.createUser(new_user, function(err, user) {
             if (err)
@@ -52,4 +54,7 @@ exports.delete_a_user = function(req, res) {
       res.json({ message: 'User successfully deleted' });
     })
 }
+
+
+
 
