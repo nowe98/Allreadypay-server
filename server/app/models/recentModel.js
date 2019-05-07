@@ -10,6 +10,7 @@ const Recent = function(recent){
 };
 
 Recent.createRecent = function(newRecent,result){
+    newRecent.RecentID=null;
     sql.query("INSERT INTO recent set ?",newRecent,function(err,res){
         if(err) {
             console.log("error: ", err);
@@ -24,6 +25,18 @@ Recent.createRecent = function(newRecent,result){
 
 Recent.getRecentById = function (id, result) {
     sql.query("SELECT * FROM recent where RecentID = ?", id, function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result (err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+Recent.getRecentByUser = function (id, result) {
+    sql.query("SELECT * FROM recent where MobileNum = ?", id, function(err, res) {
         if(err) {
             console.log("error: ", err);
             result (err, null);
