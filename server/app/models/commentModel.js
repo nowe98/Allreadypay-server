@@ -5,8 +5,11 @@ const sql = require('../../config/db.js');
 const Comment = function(comment){
     this.CommentID = comment.CommentID;
     this.Topic = comment.Topic;
+    this.Detail = comment.Detail;
     this.ProductID = comment.ProductID;
     this.MachineID = comment.MachineID;
 };
+
+
 
 module.exports = Comment;

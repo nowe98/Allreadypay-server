@@ -22,8 +22,9 @@ SELECT @@session.time_zone;
 SET @@session.time_zone = "+07:00";
 SELECT NOW();
 
-alter table usertable add Ppoint tinyint(5) default 0;
-alter table usertable drop column Ppoint ;
+alter table usertable add hash varchar(1024);
+alter table usertable drop column hash ;
+alter table recent modify RecentID tinyint(20) not null primary key auto_increment;
 select * from usertable;
 
 alter table machine add MachineName varchar(50);

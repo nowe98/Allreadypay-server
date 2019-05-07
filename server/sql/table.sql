@@ -85,9 +85,9 @@ create table if not exists promotionRegular(
     EndTime datetime,    
     ProductID varchar(20),
     AdminID varchar(20),
-    CONSTRAINT ProductID foreign key (ProductID)
+    foreign key (ProductID)
     references product(ProductID),
-    CONSTRAINT AdminID foreign key (AdminID)
+    foreign key (AdminID)
     references admin(AdminID)
 );
 
@@ -103,9 +103,9 @@ create table if not exists promotionMember(
     EndTime datetime,     
     ProductID varchar(20),
     AdminID varchar(20),
-    CONSTRAINT ProductID foreign key (ProductID)
+    foreign key (ProductID)
     references product(ProductID),
-    CONSTRAINT AdminID foreign key (AdminID)
+    foreign key (AdminID)
     references admin(AdminID)
 );
 
@@ -118,8 +118,7 @@ create table if not exists eventtable(
     EndDate datetime,
     CreateDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
     AdminID varchar(20),
-    CONSTRAINT AdminID foreign key (AdminID)
-    references admin(AdminID)
+    foreign key (AdminID) references admin(AdminID)
 
 );
 drop table recent;
@@ -129,23 +128,21 @@ create table if not exists recent(
     ProductID tinyint(10),
     MachineID tinyint(10),
 	created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT MobileNum foreign key (MobileNum)
-    references usertable(MobileNum),
-    CONSTRAINT ProductID foreign key (ProductID)
-    references product(ProductID),
-    CONSTRAINT MachineID foreign key (MachineID)
-    references machine(MachineID)
+    foreign key (MobileNum) references usertable(MobileNum),
+    foreign key (ProductID) references product(ProductID),
+    foreign key (MachineID) references machine(MachineID)
 
 );
-
+drop table comments;
 create table if not exists comments(
-	CommentID varchar(20) not null primary key,
-    Topic varchar(20),
+	CommentID tinyint(20) not null primary key auto_increment,
+    Topic varchar(40),
+    Detail varchar(200),
     ProductID tinyint(10),
     MachineID tinyint(10),
-    CONSTRAINT ProductID foreign key (ProductID)
+    foreign key (ProductID)
     references product(ProductID),
-    CONSTRAINT MachineID foreign key (MachineID)
+    foreign key (MachineID)
     references machine(MachineID)    
 );
-SELECT * FROM usertable;
+SELECT * FROM comments;
