@@ -14,6 +14,7 @@ const placeroutes = require('./placeroutes')
 const slotroutes = require('./slotroutes')
 const adminroutes = require('./adminroutes')
 const recentroutes = require('./recentroutes')
+const commentroutes = require('./commentroutes')
 
 router.use('/tasks',approutes)
 router.use('/users',userroutes)
@@ -24,6 +25,7 @@ router.use('/types',typeroutes)
 router.use('/slots',slotroutes)
 router.use('/admins',adminroutes)
 router.use('/recents',recentroutes)
+router.use('/comments',commentroutes)
 
 
 module.exports =router

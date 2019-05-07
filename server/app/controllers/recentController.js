@@ -38,7 +38,7 @@ exports.read_a_recent = function(req, res) {
     })
 }
 exports.list_recent_by_user = function(req, res) {
-  Recent.getRecentByUser(req.params.MobileNum, function(err, recent) {
+  Recent.getRecentByUser(req.params.MobileNum, function(err, recents) {
     if (err)
       res.send(err);
       res.json({"status":200,"message":"Data fetched successfully!", "Recent":recents});
