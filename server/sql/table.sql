@@ -124,7 +124,7 @@ create table if not exists eventtable(
 );
 drop table recent;
 create table if not exists recent(
-	RecentID tinyint(20) not null primary key,
+	RecentID tinyint(20) not null primary key auto_increment,
     MobileNum varchar(10),
     ProductID tinyint(10),
     MachineID tinyint(10),
@@ -141,8 +141,8 @@ create table if not exists recent(
 create table if not exists comments(
 	CommentID varchar(20) not null primary key,
     Topic varchar(20),
-    ProductID varchar(20),
-    MachineID varchar(20),
+    ProductID tinyint(10),
+    MachineID tinyint(10),
     CONSTRAINT ProductID foreign key (ProductID)
     references product(ProductID),
     CONSTRAINT MachineID foreign key (MachineID)
