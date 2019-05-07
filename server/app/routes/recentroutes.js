@@ -14,7 +14,7 @@ router.route('/:RecentID')
   .get(recentController.read_a_recent);
 
 router.route('/user/:MobileNum')
-  .get(recentController.read_a_recent_by_user);
+  .get(recentController.list_recent_by_user);
 
 
 module.exports = router
