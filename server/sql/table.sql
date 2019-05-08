@@ -74,34 +74,34 @@ create table if not exists product(
 );
 
 create table if not exists promotionRegular(
-	PromotionRID varchar(20) not null primary key,
-    Picture varchar(50),
+	PromotionRID tinyint(20) not null primary key,
+    Picture varchar(200),
     ProPrice tinyint(5),
     ProPoint tinyint(5),
-    Description varchar(50),
+    Description varchar(200),
     StartDate datetime,
     EndDate datetime,
     StartTime datetime,
     EndTime datetime,    
-    ProductID varchar(20),
+    ProductID tinyint(10),
     AdminID varchar(20),
     foreign key (ProductID)
     references product(ProductID),
     foreign key (AdminID)
     references admin(AdminID)
 );
-
+drop table promotionMember;
 create table if not exists promotionMember(
-	PromotionMID varchar(20) not null primary key,
-    Picture varchar(50),
+	PromotionMID tinyint(20) not null primary key,
+    Picture varchar(200),
     ProPrice tinyint(5),
     ProPoint tinyint(5),
-    Description varchar(50),
+    Description varchar(200),
     StartDate datetime,
     EndDate datetime,
     StartTime datetime,
     EndTime datetime,     
-    ProductID varchar(20),
+    ProductID tinyint(10),
     AdminID varchar(20),
     foreign key (ProductID)
     references product(ProductID),
@@ -110,9 +110,9 @@ create table if not exists promotionMember(
 );
 
 create table if not exists eventtable(
-	EventID varchar(20) not null primary key,
-    EventName varchar(20),
-    Description varchar(20),
+	EventID tinyint(20) not null primary key,
+    EventName varchar(50),
+    Description varchar(200),
     Picture varchar(50),
     StartDate datetime,
     EndDate datetime,

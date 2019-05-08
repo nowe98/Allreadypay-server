@@ -13,4 +13,65 @@ const Event = function(event){
 
 };
 
+Event.createEvent = function(newEvent,result){
+    sql.query("INSERT INTO eventtable set ?",newEvent,function(err,res){
+        if(err) {
+            console.log("error: ", err);
+            result(err,null);
+        }
+        else {
+            console.log(res.insertId);
+            result(null, res.insertId);
+        }
+    })
+};
+
+Event.getEventById = function (id, result) {
+    sql.query("SELECT * FROM eventtable where EventID = ?", id, function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result (err, null);
+        }
+        else {
+            result(null, res);
+        }
+    });
+};
+
+Event.getAllEvents = function (result) {
+    sql.query("SELECT * FROM eventtable", function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            console.log("event: ",res);
+            result(null,res)
+        }
+    });
+};
+
+Event.updateById = function(id,event, result) {
+    sql.query("UPDATE eventtable SET ? WHERE EventID = ?",[event, id], function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null, res);
+        }        
+    });
+};
+
+Event.delete = function(id, result) {
+    sql.query("DELETE FROM eventtable WHERE EventID=?",id,function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null,res);
+        } 
+    });
+};
 module.exports = Event;
