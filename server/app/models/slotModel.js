@@ -6,6 +6,7 @@ const Slot = function(slot){
     this.MachineID = slot.MachineID;
     this.NumberSlot = slot.NumberSlot;
     this.ProductID = slot.ProductID;
+    this.Amount = slot.Amount;
 };
 
 module.exports = Slot;
@@ -36,7 +37,7 @@ Slot.getAllSloteInMachine = function (id, result) {
 };
 
 Slot.updateById = function(MachineID, number, slot, result) {
-    sql.query("UPDATE slot SET ProductID = ? WHERE MachineID = ? AND NumberSlot = ?",[slot.ProductID, MachineID, number], function(err, res) {
+    sql.query("UPDATE slot SET ProductID = ? AND Amount = ? WHERE MachineID = ? AND NumberSlot = ?",[slot.ProductID, slot.Amount, MachineID, number], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);
@@ -46,3 +47,21 @@ Slot.updateById = function(MachineID, number, slot, result) {
         }        
     });
 };
+Slot.getAmount = function(md, pd,result) {
+    sql.query("SELECT * FROM slot WHERE MachineID = ? AND ProductID = ?",[md, pd], function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null, res);
+        }        
+    });
+}
+Slot.decreaseAmount = function(md, pd) {
+    sql.query("UPDATE slot SET Amount = Amount-1 WHERE MachineID = ? AND ProductID = ?",[md, pd], function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+        } 
+    });
+}

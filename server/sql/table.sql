@@ -38,6 +38,7 @@ create table if not exists slot(
 	MachineID tinyint(10) not null,
     NumberSlot tinyint(5) not null,
     ProductID tinyint(10),
+    Amount tinyint(3) default 0,
     primary key(MachineID, NumberSlot),
     foreign key (MachineID) references machine(MachineID),
     foreign key (ProductID) references product(ProductID)
