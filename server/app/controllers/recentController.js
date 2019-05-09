@@ -1,11 +1,12 @@
 'use strict'
 
 const Recent = require('../models/recentModel');
+const Product = require('../models/productModel');
+const Machine = require('../models/machineModel');
 
 exports.list_all_recents = function (req, res) {
     Recent.getAllRecent(function(err, recents) {
 
-      console.log('recent controller')
       if (err)
           res.send(err);
 
@@ -22,12 +23,17 @@ exports.create_recent = function(req, res) {
         res.status(400).send({ error:true, message: 'Please provide information' });
     }
     else{
-        Recent.createRecent(new_recent, function(err,r) {
-            if (err)
-                res.send(err);
-            res.json({"status":200,"message":"Add table complete."});
-        });
-  }
+      Product.getProductById(new_recent.ProductID, function(err, product) {
+        Machine.updatesales(new_recent.MachineID,product[0].Price)
+      })
+      Product.updateSales(new_recent.ProductID);
+      Recent.createRecent(new_recent, function(err,r) {
+          if (err)
+            res.send(err);
+          res.json({"status":200,"message":"Add table complete."});
+      });
+        
+    }
 };
 
 exports.read_a_recent = function(req, res) {

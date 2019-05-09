@@ -24,10 +24,13 @@ SELECT NOW();
 
 call create_recent("0800000000","fdsafsa","dfas");
 
-alter table product add Sales tinyint(6);
-alter table recent drop column  fdsa;
+alter table admin add llevel varchar(20);
+alter table admin drop column  llevel;
 alter table product modify Sales tinyint(6) default 0;
 select * from machine;
+select * from product;
+update machine set Sales = 0 where MachineID =1;
+delete from recent where RecentID =1;
 
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;

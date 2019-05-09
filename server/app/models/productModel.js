@@ -95,4 +95,12 @@ Product.getProductByMachine = function(id, result) {
     })
 }
 
+Product.updateSales = function(id, result) {
+    sql.query("UPDATE product SET Sales = Sales + Price WHERE ProductID = ?",id, function(err, res) {
+        if(err) {
+            console.log("error: ", err)
+        }
+    })
+}
+
 module.exports = Product;

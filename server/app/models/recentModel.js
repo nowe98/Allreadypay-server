@@ -11,7 +11,7 @@ const Recent = function(recent){
 
 Recent.createRecent = function(newRecent,result){
     newRecent.RecentID=null;
-    sql.query("CALL create_recent(?, ?, ?)",[newRecent.MobileNum, newRecnpent.ProductID, newRecent.MachineID],function(err,res){
+    sql.query("CALL create_recent(?, ?, ?)",[newRecent.MobileNum, newRecent.ProductID, newRecent.MachineID],function(err,res){
         if(err) {
             console.log("error: ", err);
             result(err,null);
