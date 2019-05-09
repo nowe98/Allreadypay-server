@@ -11,6 +11,7 @@ const Machine = function(machine){
     this.AdminID = machine.AdminID;
     this.MachineType = machine.MachineType;
     this.Sales = machine.Sales;
+    this.IP = machine.IP;
 };
 
 Machine.createMachine = function(newMachine,result){
@@ -95,7 +96,8 @@ Machine.delete = function(id, result) {
 };
 
 Machine.updatestatus = function(id, status, result){
-    sql.query("UPDATE machine SET mstatus? WHERE MachineID = ?",[status, id], function(err, res) {
+    console.log(status, id);
+    sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[status, id], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);
@@ -105,5 +107,17 @@ Machine.updatestatus = function(id, status, result){
         }        
     });
 };
+
+Machine.updateip = function(id, ip, result) {
+    sql.query("UPDATE machine set IP =? where MachineID = ?", [ip, id], function(err,res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null, res);
+        }   
+    });
+}
 
 module.exports= Machine;

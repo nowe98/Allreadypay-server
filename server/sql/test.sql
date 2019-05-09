@@ -16,18 +16,18 @@ INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
 (4, 'Refactor Code', 1, '2016-04-10 23:50:40'),
 (5, 'Push to prod', 1, '2016-04-10 23:50:50');
 
-SELECT * FROM place;
+SELECT * FROM recent;
 SELECT @@global.time_zone;
 SELECT @@session.time_zone;
 SET @@session.time_zone = "+07:00";
 SELECT NOW();
 
-call create_recent("0800000000","fdsafsa","dfas")
+call create_recent("0800000000","fdsafsa","dfas");
 
 alter table usertable add hash varchar(1024);
-alter table recent drop column  ;
+alter table recent drop column  fdsa;
 alter table recent modify RecentID tinyint(20) not null primary key auto_increment;
 select * from usertable;
 
-alter table machine add MachineName varchar(50);
+alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;

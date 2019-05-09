@@ -15,5 +15,7 @@ router.route('/:MachineID')
   .put(machineController.update_a_machine)
   .delete(machineController.delete_a_machine);
 
+router.route('/ip/:MachineID')
+  .put(machineController.update_ip);
 
 module.exports = router
