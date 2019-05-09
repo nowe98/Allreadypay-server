@@ -49,7 +49,7 @@ create table if not exists admin(
     llevel tinyint(1),
     FirstName varchar(20),
     LastName varchar(20),
-    Sex tinyint(1),
+    Sex varchar(4),
     Email varchar(50)
 );
 
@@ -70,8 +70,10 @@ create table if not exists product(
     Company varchar(50),
     Description varchar(100),
     ProPoint tinyint(5),
-    ProPrice tinyint(5)
+    ProPrice tinyint(5),
+    Sales tinyint(6)
 );
+
 
 create table if not exists promotionRegular(
 	PromotionRID tinyint(20) not null primary key,

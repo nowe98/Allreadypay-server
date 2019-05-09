@@ -9,7 +9,9 @@ exports.list_all_admins = function (req, res) {
         Pass: admin.Pass,
         Name: {FirstName:admin.FirstName,LastName: admin.LastName},
         Sex: admin.Sex,
+        llevel: admin.llevel,
         Email: admin.Email
+        
       }));
         console.log('controller')
         if (err)

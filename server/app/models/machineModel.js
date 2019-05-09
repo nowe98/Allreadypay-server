@@ -120,4 +120,16 @@ Machine.updateip = function(id, ip, result) {
     });
 }
 
+Machine.updatesales = function(id, price, result) {
+    sql.query("UPDATE machine SET Sales = Sales + ? WHERE MachineID = ?",[price,id], function(err, res) {
+        if(err) {
+            console.log("error: ", err)
+            result(null,err)
+        }
+        else {
+            result(null,res);
+        }
+    })
+}
+
 module.exports= Machine;
