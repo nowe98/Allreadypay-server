@@ -2,8 +2,8 @@
 
 const Product = require('../models/productModel');
 
-exports.list_all_products = function (req, res) {
-    Product.getAllProduct(function(err, products) {
+exports.list_all_products = async function (req, res) {
+    await Product.getAllProduct(function(err, products) {
 
         console.log('controller')
         if (err)
