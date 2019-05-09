@@ -22,8 +22,10 @@ SELECT @@session.time_zone;
 SET @@session.time_zone = "+07:00";
 SELECT NOW();
 
+call create_recent("0800000000","fdsafsa","dfas")
+
 alter table usertable add hash varchar(1024);
-alter table usertable drop column hash ;
+alter table recent drop column  ;
 alter table recent modify RecentID tinyint(20) not null primary key auto_increment;
 select * from usertable;
 

@@ -62,3 +62,11 @@ exports.delete_a_machine = function(req, res) {
       res.json({ message: 'Machine successfully deleted' });
     })
 }
+
+exports.update_status = function(req, res){
+  Machine.updatestatus(req.status,req,id,function(err, result) {
+    if(err)
+      res.send(err);
+    res.json({ message: 'Update status complete' });
+  })
+}

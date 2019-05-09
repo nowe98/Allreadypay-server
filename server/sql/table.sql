@@ -125,12 +125,10 @@ drop table recent;
 create table if not exists recent(
 	RecentID tinyint(20) not null primary key auto_increment,
     MobileNum varchar(10),
-    ProductID tinyint(10),
-    MachineID tinyint(10),
+    ProductID varchar(20),
+    MachineID varchar(30),
 	created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    foreign key (MobileNum) references usertable(MobileNum),
-    foreign key (ProductID) references product(ProductID),
-    foreign key (MachineID) references machine(MachineID)
+    foreign key (MobileNum) references usertable(MobileNum)
 
 );
 drop table comments;

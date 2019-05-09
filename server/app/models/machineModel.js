@@ -94,4 +94,16 @@ Machine.delete = function(id, result) {
     });
 };
 
+Machine.updatestatus = function(id, status, result){
+    sql.query("UPDATE machine SET mstatus? WHERE MachineID = ?",[status, id], function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null, res);
+        }        
+    });
+};
+
 module.exports= Machine;
