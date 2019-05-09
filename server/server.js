@@ -1,7 +1,7 @@
 const express = require('express'),
   app = express(),
   bodyParser = require('body-parser');
-
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -19,6 +19,14 @@ app.get('/',function(req,res){
   console.log("get");
   res.send("Hi, there");
 });
+const corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['authorization']
+};
+
+app.use(cors(corsOption));
 
 const router = require('./app/routes'); //importing route
 app.use('/v1/',router); //register the route
