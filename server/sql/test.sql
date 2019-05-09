@@ -24,10 +24,10 @@ SELECT NOW();
 
 call create_recent("0800000000","fdsafsa","dfas");
 
-alter table usertable add hash varchar(1024);
+alter table product add Sales tinyint(6);
 alter table recent drop column  fdsa;
-alter table recent modify RecentID tinyint(20) not null primary key auto_increment;
-select * from usertable;
+alter table product modify Sales tinyint(6) default 0;
+select * from machine;
 
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;

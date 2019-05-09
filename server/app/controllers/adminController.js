@@ -3,13 +3,19 @@
 const Admin = require('../models/adminModel');
 
 exports.list_all_admins = function (req, res) {
-    Admin.getAllAdmins(function(err, admin) {
-
+    Admin.getAllAdmins(function(err, admins) {
+      var newadmins = admins.map((admin) => ({
+        AdminID: admin.AdminID,
+        Pass: admin.Pass,
+        Name: {FirstName:admin.FirstName,LastName: admin.LastName},
+        Sex: admin.Sex,
+        Email: admin.Email
+      }));
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', admin);
-        res.send(admin);
+        console.log('res', newadmins);
+        res.send(newadmins);
     });
 };
 

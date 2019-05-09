@@ -13,12 +13,15 @@ const Product = function(product){
     this.Description = product.Description;
     this.ProPrice = product.ProPrice;
     this.ProPoint = product.ProPoint;
+    this.Sales = product.Sales;
 
 };
 
 Product.createProduct = function(newProduct,result){
     if(!newProduct.PPoint)
         newProduct.PPoint=0;
+    if(!newProduct.Sales)
+        newProduct.Sales=0;
     sql.query("INSERT INTO product set ?",newProduct,function(err,res){
         if(err) {
             console.log("error: ", err);
