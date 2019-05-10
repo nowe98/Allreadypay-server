@@ -26,7 +26,7 @@ call create_recent("0800000000","fdsafsa","dfas");
 
 alter table admin add llevel varchar(20);
 alter table admin drop column  llevel;
-alter table product modify Sales tinyint(6) default 0;
+alter table comments modify  Rating float(5,1) default 3;
 select * from machine;
 select * from product;
 update machine set Sales = 0 where MachineID =1;

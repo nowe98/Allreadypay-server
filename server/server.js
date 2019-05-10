@@ -32,15 +32,32 @@ const router = require('./app/routes'); //importing route
 app.use('/v1/',router); //register the route
 
 var count =0;
+const axios = require('axios')
+const sql =require('./config/db')
 
 var intervalObject = setInterval(function () { 
-  count++; 
-  console.log(count, 'seconds passed'); 
-  if (count == 20) { 
-      console.log('exiting'); 
-      clearInterval(intervalObject); 
-  } 
-}, 1000); 
+  axios.get('http://192.168.137.199:5000/status')
+      .then((res) => {
+          //console.log(`statusCode: ${res.statusCode}`)
+          console.log(res.data)
+          sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[res.data.status, res.data.machineID], function(err, res) {
+            if(err) {
+                console.log("error: ", err);
+            }    
+        });
+      })
+      .catch((error) => {
+          console.error(error)
+          sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[0, res.data.machineID], function(err, res) {
+            if(err) {
+                console.log("error: ", err);
+            }
+            else {
+            }
+          })
+      })
+  
+},30000);
 
 
 

@@ -140,12 +140,10 @@ drop table comments;
 create table if not exists comments(
 	CommentID tinyint(20) not null primary key auto_increment,
     Topic varchar(40),
-    Detail varchar(200),
-    ProductID tinyint(10),
-    MachineID tinyint(10),
-    foreign key (ProductID)
-    references product(ProductID),
-    foreign key (MachineID)
-    references machine(MachineID)    
+    Detail varchar(400),
+    ProductID varchar(50),
+    MachineID varchar(50),
+    Place varchar(50),
+    Rating float(5,1)
 );
 SELECT * FROM comments;

@@ -18,7 +18,7 @@ exports.create_comment = function(req, res) {
     const new_comment = new Comment(req.body);
   
     //handles null error 
-    if(!new_comment.ProductID||!new_comment.MachineID){ 
+    if(!new_comment.Topic||!new_comment.Detail){ 
         res.status(400).send({ error:true, message: 'Please provide information' });
     }
     else{

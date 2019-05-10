@@ -8,6 +8,8 @@ const Comment = function(comment){
     this.Detail = comment.Detail;
     this.ProductID = comment.ProductID;
     this.MachineID = comment.MachineID;
+    this.Place = comment.Place;
+    this.Rating = comment.Rating;
 };
 
 Comment.createComment = function(newC,result){
