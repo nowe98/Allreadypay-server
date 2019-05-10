@@ -20,8 +20,22 @@ exports.list_all_products = async function (req, res) {
         console.log('res', newproducts);
         res.json({"status":200,"message":"Data fetched successfully!", "ProductList":newproducts});
 
-});
+    });
 };
+
+exports.list_all_products_admin = async function (req, res) {
+  await Product.getAllProduct(function(err, products) {
+
+      if (err)
+          res.send(err);
+
+      
+      console.log('res', products);
+      res.json({"status":200,"message":"Data fetched successfully!", "ProductList":products});
+
+  });
+};
+
 exports.create_product = function(req, res) {
     const new_product = new Product(req.body);
   

@@ -7,6 +7,7 @@ const Recent = function(recent){
     this.MobileNum = recent.MobileNum;
     this.ProductID = recent.ProductID;
     this.MachineID = recent.MachineID;
+    this.Rating = recent.Rating;
 };
 
 Recent.createRecent = function(newRecent,result){

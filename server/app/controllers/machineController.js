@@ -23,6 +23,19 @@ exports.list_all_machines = function (req, res) {
     });
 };
 
+exports.list_all_machines_admin = function (req, res) {
+  Machine.getAllMachines(function(err, machines) {
+    console.log('machine controller')
+    if (err)
+      res.send(err);
+    
+    
+    console.log('res', machines);
+    res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":machines});
+  });
+};
+
+
 exports.create_machine = function(req, res) {
     const new_machine = new Machine(req.body);
   
