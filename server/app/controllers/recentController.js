@@ -42,10 +42,10 @@ exports.create_recent = async function(req, res) {
               res.send(err);
             res.json({"status":200,"message":"Add table complete."});
         });
-        axios.get('http://192.168.137.199:5000/runvending/'+new_recent.ProductID)
+        axios.get('http://192.168.137.199:5000/runvend/'+new_recent.ProductID)
         .then((res) => {
             //console.log(`statusCode: ${res.statusCode}`)
-            console.log(res.data)
+            //console.log(res.data)
         })
         .catch((error) => {
             console.error(error)

@@ -29,7 +29,7 @@ alter table admin drop column  llevel;
 alter table comments modify  Rating float(5,1) default 3;
 select * from machine;
 select * from product;
-update machine set Sales = 0 where MachineID =1;
+update slot set Sales = 4 where MachineID =1;
 delete from recent where RecentID =1;
 
 alter table machine add IP varchar(20);
