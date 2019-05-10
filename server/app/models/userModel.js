@@ -57,7 +57,7 @@ User.getAllUser = function (result) {
 };
 
 User.updateById = function(MobileNum,user, result) {
-    sql.query("UPDATE usertable SET FirstName = ?, LastName = ? WHERE MobileNum = ?",[user.FirstName, user.LastName, MobileNum], function(err, res) {
+    sql.query("UPDATE usertable SET ? WHERE MobileNum = ?",[user, MobileNum], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);

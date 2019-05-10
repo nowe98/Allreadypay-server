@@ -27,9 +27,9 @@ call create_recent("0800000000","fdsafsa","dfas");
 alter table admin add llevel varchar(20);
 alter table admin drop column  llevel;
 alter table comments modify  Rating float(5,1) default 3;
-select * from machine;
-select * from product;
-update slot set Sales = 4 where MachineID =1;
+select * from usertable;
+select * from comments;
+update slot set Amount = 4 where MachineID =5;
 delete from recent where RecentID =1;
 
 alter table machine add IP varchar(20);
