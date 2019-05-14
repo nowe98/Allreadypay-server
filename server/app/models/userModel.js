@@ -17,6 +17,14 @@ const User = function(user){
 User.createUser = function (newUser, result) {
     newUser.Ppoint=0;
     newUser = User.setpassword(newUser);
+    sql.query("INSERT INTO userbank set MobileNum = ?, Pass = ?", [newUser.MobileNum, newUser.Pass], function(err, res) {
+
+        if(err) {
+            console.log("error: ", err);
+            result(err,null);
+        }
+    });
+
     sql.query("INSERT INTO usertable set ?", newUser, function(err, res) {
 
         if(err) {

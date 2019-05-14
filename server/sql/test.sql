@@ -30,12 +30,13 @@ alter table comments modify  Rating float(5,1) default 3;
 select * from comments;
 select * from comments;
 update slot set Amount = 4 where MachineID =5;
-delete from recent where RecentID =1;
+delete from usertable where MobileNum ='1';
 
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;
 
 select * from userbank;
+select * from usertable;
 
 INSERT INTO userbank set MobileNum ="081000000", Pass ="1234";
-UPDATE userbank SET balance = balance - 10 WHERE MobileNum = "081000000";
+UPDATE userbank SET balance = 100 WHERE MobileNum = "081000000";

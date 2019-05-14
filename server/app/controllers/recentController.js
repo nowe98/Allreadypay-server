@@ -33,7 +33,14 @@ exports.create_recent = async function(req, res) {
       }
       else{
         Product.getProductById(new_recent.ProductID, function(err, product) {
-          Machine.updatesales(new_recent.MachineID,product[0].Price)
+          Machine.updatesales(new_recent.MachineID,product[0].Price);
+          axios.put('http://localhost:3001/users/'+ new_recent.MobileNum,
+            {
+              balance: { 'balance':product[0].Price}
+            },
+            {
+              headers: { 'Content-Type' : 'application/json' }
+            });
         })
         Product.updateSales(new_recent.ProductID);
         Slot.decreaseAmount(new_recent.MachineID,new_recent.ProductID);
@@ -42,14 +49,14 @@ exports.create_recent = async function(req, res) {
               res.send(err);
             res.json({"status":200,"message":"Add table complete."});
         });
-        axios.get('http://172.20.10.9:5000/runvend/'+new_recent.ProductID)
-        .then((res) => {
-            //console.log(`statusCode: ${res.statusCode}`)
-            //console.log(res.data)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+        // axios.get('http://172.20.10.9:5000/runvend/'+new_recent.ProductID)
+        // .then((res) => {
+        //     //console.log(`statusCode: ${res.statusCode}`)
+        //     //console.log(res.data)
+        // })
+        // .catch((error) => {
+        //     console.error(error)
+        // })
           
       }
     });
@@ -74,4 +81,15 @@ exports.list_recent_by_user = function(req, res) {
       res.send(err);
       res.json({"status":200,"message":"Data fetched successfully!", "Recent":recents});
   })
+}
+exports.test = function(req, res) {
+  axios.put('http://localhost:3001/users/'+ req.params.MobileNum,
+            {
+              balance: { 'balance': 10}
+            },
+            {
+              headers: { 'Content-Type' : 'application/json' }
+            }).then((response) => {
+              res.json({"status":200,"message":"Data fetched successfully!"});
+           });
 }
