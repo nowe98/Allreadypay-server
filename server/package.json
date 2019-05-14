@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "node app.js"
+    "test": "nodemon mock.js"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

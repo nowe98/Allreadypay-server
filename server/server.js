@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PORT || 3000;
 
-const machine = require('./app/controllers/machineController')
 
 app.listen(port);
 
@@ -31,33 +30,33 @@ app.use(cors(corsOption));
 const router = require('./app/routes'); //importing route
 app.use('/v1/',router); //register the route
 
-var count =0;
-const axios = require('axios')
-const sql =require('./config/db')
+// var count =0;
+// const axios = require('axios')
+// const sql =require('./config/db')
 
-var intervalObject = setInterval(function () { 
-  axios.get('http://192.168.137.199:5000/status')
-      .then((res) => {
-          //console.log(`statusCode: ${res.statusCode}`)
-          console.log(res.data)
-          sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[res.data.status, res.data.machineID], function(err, res) {
-            if(err) {
-                console.log("error: ", err);
-            }    
-        });
-      })
-      .catch((error) => {
-          console.error(error)
-          sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[0, res.data.machineID], function(err, res) {
-            if(err) {
-                console.log("error: ", err);
-            }
-            else {
-            }
-          })
-      })
+// var intervalObject = setInterval(function () { 
+//   axios.get('http://172.20.10.9:5000/status')
+//       .then((res) => {
+//           //console.log(`statusCode: ${res.statusCode}`)
+//           console.log(res.data)
+//           sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[res.data.status, res.data.machineID], function(err, res) {
+//             if(err) {
+//                 console.log("error: ", err);
+//             }    
+//         });
+//       })
+//       .catch((error) => {
+//           console.error(error)
+//           sql.query("UPDATE machine SET mstatus = ? WHERE MachineID = ?",[0, res.data.machineID], function(err, res) {
+//             if(err) {
+//                 console.log("error: ", err);
+//             }
+//             else {
+//             }
+//           })
+//       })
   
-},30000);
+// },30000);
 
 
 

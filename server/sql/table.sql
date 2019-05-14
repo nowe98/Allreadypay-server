@@ -147,3 +147,12 @@ create table if not exists comments(
     Rating float(5,1)
 );
 SELECT * FROM comments;
+
+
+create table if not exists userbank(
+	MobileNum varchar(10) not null primary key,
+    Pass varchar(20) not null,
+    balance tinyint(5) default 100
+
+	
+);
