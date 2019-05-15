@@ -33,7 +33,7 @@ create table if not exists type_machine(
     CapacityPerBlock tinyint(5)
 
 );
-
+drop table slot;
 create table if not exists slot(
 	MachineID tinyint(10) not null,
     NumberSlot tinyint(5) not null,
@@ -75,9 +75,9 @@ create table if not exists product(
     Sales tinyint(6)
 );
 
-
+drop table promotionRegular;
 create table if not exists promotionRegular(
-	PromotionRID tinyint(20) not null primary key,
+	PromotionRID tinyint(20) not null primary key auto_increment,
     Picture varchar(200),
     ProPrice tinyint(5),
     ProPoint tinyint(5),
@@ -95,7 +95,7 @@ create table if not exists promotionRegular(
 );
 drop table promotionMember;
 create table if not exists promotionMember(
-	PromotionMID tinyint(20) not null primary key,
+	PromotionMID tinyint(20) not null primary key auto_increment,
     Picture varchar(200),
     ProPrice tinyint(5),
     ProPoint tinyint(5),
@@ -113,7 +113,7 @@ create table if not exists promotionMember(
 );
 
 create table if not exists eventtable(
-	EventID tinyint(20) not null primary key,
+	EventID tinyint(20) not null primary key auto_increment,
     EventName varchar(50),
     Description varchar(200),
     Picture varchar(50),
@@ -144,7 +144,7 @@ create table if not exists comments(
     ProductID varchar(50),
     MachineID varchar(50),
     Place varchar(50),
-    Rating float(5,1)
+    Rating float(5,1) default 3
 );
 SELECT * FROM comments;
 

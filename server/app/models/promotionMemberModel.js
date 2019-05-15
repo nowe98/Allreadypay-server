@@ -18,6 +18,7 @@ const PromotionMember = function(promotionmember){
 };
 
 PromotionMember.createPromotion = function(newP,result){
+    newP.PromotionMID = null;
     sql.query("INSERT INTO promotionMember set ?",newP,function(err,res){
         if(err) {
             console.log("error: ", err);

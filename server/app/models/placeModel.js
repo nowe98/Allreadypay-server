@@ -10,6 +10,7 @@ const Place = function(place){
 }
 
 Place.createPlace = function(newPlace,result){
+    newPlace.PlaceID = null;
     sql.query("INSERT INTO place set ?",newPlace,function(err,res){
         if(err) {
             console.log("error: ", err);

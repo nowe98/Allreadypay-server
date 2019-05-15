@@ -18,6 +18,7 @@ const PromotionRegular = function(promotionregular){
 };
 
 PromotionRegular.createPromotion = function(newP,result){
+    newP.PromotionRID = null;
     sql.query("INSERT INTO promotionRegular set ?",newP,function(err,res){
         if(err) {
             console.log("error: ", err);

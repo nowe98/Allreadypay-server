@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 );
  
 ALTER TABLE `tasks` ADD PRIMARY KEY (`id`);
-ALTER TABLE `tasks` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+Select * from machine;
+ALTER TABLE place MODIFY PlaceID tinyint(10) NOT NULL AUTO_INCREMENT;
 
 INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
 (1, 'Find bugs', 1, '2016-04-10 23:50:40'),
@@ -35,8 +36,8 @@ delete from usertable where MobileNum ='1';
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;
 
-select * from userbank;
-select * from usertable;
+select * from product;
 
+select * from userbank;
 INSERT INTO userbank set MobileNum ="081000000", Pass ="1234";
 UPDATE userbank SET balance = 100 WHERE MobileNum = "081000000";

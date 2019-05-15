@@ -15,6 +15,7 @@ const Machine = function(machine){
 };
 
 Machine.createMachine = function(newMachine,result){
+    newMachine.MachineID=null;
     sql.query("INSERT INTO machine set ? ;",newMachine,function(err,res){
         if(err) {
             console.log("error: ", err);

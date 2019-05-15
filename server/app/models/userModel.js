@@ -12,7 +12,7 @@ const User = function(user){
     this.Sex = user.Sex;
     this.Email = user.Email;
     this.hash = user.hash;
-    this.salt = user.salt
+    this.salt = user.salt;
 };
 User.createUser = function (newUser, result) {
     newUser.Ppoint=0;
