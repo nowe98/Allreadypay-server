@@ -24,17 +24,18 @@ Machine.createMachine = function(newMachine,result){
         else {
             console.log(res.insertId);
         }
+        sql.query("CALL add_slot(?, ?);", [res.insertId, newMachine.MachineType], function(err,res){
+            if(err) {
+                console.log("error: ", err);
+                result(err,null);
+            }
+            else {
+                console.log(res.insertId);
+                result(null, res.insertId);
+            }
+        })
     })
-    sql.query("CALL add_slot(?, ?);", [newMachine.MachineID, newMachine.MachineType], function(err,res){
-        if(err) {
-            console.log("error: ", err);
-            result(err,null);
-        }
-        else {
-            console.log(res.insertId);
-            result(null, res.insertId);
-        }
-    })
+    
     
 };
 
