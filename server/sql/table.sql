@@ -14,7 +14,7 @@ create table if not exists usertable(
 drop table machine;
 drop table slot;
 create table if not exists machine(
-	MachineID tinyint(10) not null primary key,
+	MachineID tinyint(10) not null primary key auto_increment,
     Description varchar(50),
     PlaceID tinyint(10),
     ManufacturedDate datetime,
@@ -28,7 +28,7 @@ create table if not exists machine(
 );
 
 create table if not exists type_machine(
-	MachineType tinyint(10) not null primary key,
+	MachineType tinyint(10) not null primary key auto_increment,
     Slots tinyint(5),
     CapacityPerBlock tinyint(5)
 
@@ -55,14 +55,14 @@ create table if not exists admin(
 );
 
 create table if not exists place(
-	PlaceID tinyint(10) not null primary key,
+	PlaceID tinyint(10) not null primary key auto_increment,
 	PlaceName varchar(50),
     latitude float(10,6),
     longitude float(10,6)
 );
 drop table place;
 create table if not exists product(
-	ProductID tinyint(10) not null primary key,
+	ProductID tinyint(10) not null primary key auto_increment,
     ProductName varchar(20) not null,
     Picture varchar(100),
     Price tinyint(5),

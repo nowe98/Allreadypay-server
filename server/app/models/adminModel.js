@@ -9,9 +9,16 @@ const Admin = function(admin){
     this.LastName = admin.LastName;
     this.Sex = admin.Sex;
     this.Email = admin.Email;
+    this.llevel = admin.llevel;
 };
 
 Admin.createAdmin = function (newAdmin, result) {
+    if(!newAdmin.llevel) {
+        newAdmin.llevel =1;
+    }
+    if(newAdmin.llevel<1||newAdmin>3) {
+        newAdmin.llevel =1;
+    }
     sql.query("INSERT INTO admin set ?", newAdmin, function(err, res) {
 
         if(err) {
@@ -63,16 +70,12 @@ Admin.updateById = function(AdminID,admin, result) {
     });
 };
 
-Admin.validate = function(admin, result){
-        if(err) {
-            console.log("error: ", err);
-            result(null,err);
-        }
-        else {
-            if(this.AdminID==admin.AdminID&&this.Pass==admin.Pass)
-            result(null,1);
-        }
+Admin.validatePassword = function(admin,password) {
+    // const hash = crypto.pbkdf2Sync(password, user.salt, 10000, 512, 'sha512').toString('hex');
+    return admin.Pass === password;
 };
+
+
 Admin.delete = function(id, result) {
     sql.query("DELETE FROM admin WHERE AdminID=?",id,function(err, res) {
         if(err) {

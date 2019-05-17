@@ -38,6 +38,7 @@ Machine.createMachine = function(newMachine,result){
     
 };
 
+
 Machine.getMachineById = function (id, result) {
     sql.query("SELECT * FROM machine where MachineID = ?", id, function(err, res) {
         if(err) {
@@ -64,7 +65,7 @@ Machine.getAllMachines = function (result) {
 };
 
 Machine.updateById = function(MachineID,machine, result) {
-    sql.query("UPDATE machine SET ? WHERE MachineID = ?",[machine, MachineID], function(err, res) {
+    sql.query("UPDATE machine SET PlaceID = ?, MachineID = ?, MachineName = ?, MachineType = ?, AdminID = ? WHERE MachineID = ?",[machine.PlaceID, machine.MachineID, machine.MachineName, machine.MachineType, machine.AdminID, MachineID], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);

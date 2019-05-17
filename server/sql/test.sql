@@ -36,7 +36,8 @@ delete from usertable where MobileNum ='1';
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;
 
-select * from product;
+select * from admin;
+UPDATE admin SET llevel = 1 where AdminID='134';
 
 select * from userbank;
 INSERT INTO userbank set MobileNum ="081000000", Pass ="1234";
