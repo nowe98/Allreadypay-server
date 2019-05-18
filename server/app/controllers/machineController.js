@@ -86,7 +86,7 @@ var getClientAddress = function (req) {
 };
 
 exports.update_ip = function(req, res) {
-  var ipAddress = getClientAddress(req);
+  var ipAddress = getClientAddress(req).split(':')[3];
   
   Machine.updateip(req.params.MachineID, ipAddress, function(err, machine) {
     if (err)
