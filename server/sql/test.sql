@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
  
 ALTER TABLE `tasks` ADD PRIMARY KEY (`id`);
 Select * from machine;
+SELECT MachineID, IP FROM machine;
 ALTER TABLE place MODIFY PlaceID tinyint(10) NOT NULL AUTO_INCREMENT;
 
 INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
@@ -37,7 +38,7 @@ alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;
 
 select * from admin;
-UPDATE admin SET llevel = 1 where AdminID='134';
+UPDATE machine SET IP = '192.168.1.132' where MachineID=4;
 
 select * from userbank;
 INSERT INTO userbank set MobileNum ="081000000", Pass ="1234";

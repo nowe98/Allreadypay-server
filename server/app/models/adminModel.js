@@ -53,7 +53,7 @@ Admin.getAllAdmins = function (result) {
         }
         else {
             console.log("admin: ",res);
-            result(null,res)
+            result(null,res);
         }
     });
 };
