@@ -20,8 +20,7 @@ const Product = function(product){
 Product.createProduct = function(newProduct,result){
     if(!newProduct.PPoint)
         newProduct.PPoint=0;
-    if(!newProduct.Sales)
-        newProduct.Sales=0;
+    newProduct.Sales=0;
     newProduct.ProductID = null;
     sql.query("INSERT INTO product set ?",newProduct,function(err,res){
         if(err) {
