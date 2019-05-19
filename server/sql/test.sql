@@ -18,7 +18,7 @@ INSERT INTO `tasks` (`id`, `task`, `status`, `created_at`) VALUES
 (4, 'Refactor Code', 1, '2016-04-10 23:50:40'),
 (5, 'Push to prod', 1, '2016-04-10 23:50:50');
 
-SELECT * FROM recent;
+SELECT * FROM slot where MachineID=15;
 SELECT @@global.time_zone;
 SELECT @@session.time_zone;
 SET @@session.time_zone = "+07:00";

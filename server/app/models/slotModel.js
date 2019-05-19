@@ -57,6 +57,17 @@ Slot.getAmount = function(md, pd,result) {
             result(null, res);
         }        
     });
+};
+Slot.setAmount = function(amount, md, pd, result) {
+    sql.query("UPDATE slot SET Amount = ? WHERE MachineID = ? AND NumberSlot = ?",[amount, md, pd], function(err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null,err);
+        }
+        else {
+            result(null, res);
+        }   
+    });
 }
 Slot.decreaseAmount = function(md, pd) {
     sql.query("UPDATE slot SET Amount = Amount-1 WHERE MachineID = ? AND ProductID = ?",[md, pd], function(err, res) {

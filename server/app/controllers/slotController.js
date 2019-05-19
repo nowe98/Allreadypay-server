@@ -29,3 +29,10 @@ exports.update_a_slot = function(req, res) {
       res.json(slot);
     })
 }
+exports.update_amount = function(req, res) {
+  Slot.setAmount(req.body.Amount,req.params.MachineID, req.params.NumberSlot, function(err, slot) {
+    if (err)
+      res.send(err);
+    res.json(slot);
+  })
+}
