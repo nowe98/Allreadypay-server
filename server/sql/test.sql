@@ -31,15 +31,15 @@ alter table admin drop column  llevel;
 alter table comments modify  Rating float(5,1) default 3;
 select * from comments;
 select * from comments;
-update slot set Amount = 4 where MachineID =5;
+update slot set Amount=0 where MachineID =15 and NumberSlot=2;
 delete from usertable where MobileNum ='1';
 
 alter table machine add IP varchar(20);
 alter table machine drop column vending_name ;
 
 select * from admin;
-UPDATE machine SET IP = '192.168.1.132' where MachineID=4;
+UPDATE machine SET IP = '192.168.1.132' where MachineID=15;
 
 select * from userbank;
 INSERT INTO userbank set MobileNum ="081000000", Pass ="1234";
-UPDATE userbank SET balance = 100 WHERE MobileNum = "081000000";
+UPDATE userbank SET balance = 100 WHERE MobileNum = "0972402112";

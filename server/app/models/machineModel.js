@@ -16,6 +16,7 @@ const Machine = function(machine){
 
 Machine.createMachine = function(newMachine,result){
     newMachine.MachineID=null;
+    newMachine.Sales =0;
     sql.query("INSERT INTO machine set ? ;",newMachine,function(err,res){
         if(err) {
             console.log("error: ", err);
@@ -66,7 +67,7 @@ Machine.getAllMachines = function (result) {
 };
 
 Machine.updateById = function(MachineID,machine, result) {
-    sql.query("UPDATE machine SET PlaceID = ?, MachineID = ?, MachineName = ?, MachineType = ?, AdminID = ? WHERE MachineID = ?",[machine.PlaceID, machine.MachineID, machine.MachineName, machine.MachineType, machine.AdminID, MachineID], function(err, res) {
+    sql.query("UPDATE machine SET PlaceID = ?, MachineName = ?, MachineType = ?, AdminID = ? WHERE MachineID = ?",[machine.PlaceID, machine.MachineName, machine.MachineType, machine.AdminID, MachineID], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);

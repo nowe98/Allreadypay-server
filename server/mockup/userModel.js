@@ -8,7 +8,7 @@ const User = function(user){
     this.balance =user.balance;
 }
 User.createUser = function (newUser, result) {
-    sql.query("INSERT INTO userbank set ?", newUser, function(err, res) {
+    sql.query("INSERT INTO userbank set MobileNum = ?, Pass = ?", [newUser.MobileNum, newUser.Pass], function(err, res) {
 
         if(err) {
             console.log("error: ", err);

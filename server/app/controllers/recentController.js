@@ -33,6 +33,8 @@ exports.create_recent = async function(req, res) {
       }
       else{
         Product.getProductById(new_recent.ProductID, function(err, product) {
+          if(err)
+            console.log(err);
           Machine.updatesales(new_recent.MachineID,product[0].Price);
           axios.put('http://localhost:3001/users/'+ new_recent.MobileNum,
             {
@@ -49,14 +51,14 @@ exports.create_recent = async function(req, res) {
               res.send(err);
             res.json({"status":200,"message":"Add table complete."});
         });
-        // axios.get('http://172.20.10.9:5000/runvend/'+new_recent.ProductID)
-        // .then((res) => {
-        //     //console.log(`statusCode: ${res.statusCode}`)
-        //     //console.log(res.data)
-        // })
-        // .catch((error) => {
-        //     console.error(error)
-        // })
+        axios.get('http://192.168.1.132:5000/runvend/'+new_recent.ProductID)
+        .then((res) => {
+            //console.log(`statusCode: ${res.statusCode}`)
+            console.log(res.data)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
           
       }
     });
