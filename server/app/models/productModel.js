@@ -60,7 +60,9 @@ Product.getAllProduct = function (result) {
 };
 
 Product.updateById = function(ProductID,product, result) {
-    sql.query("UPDATE product SET ? WHERE ProductID = ?",[product, ProductID], function(err, res) {
+    sql.query("UPDATE product SET ProductName= ?, Picture =?, PPoint = ?, Price = ?, Volume = ?, Description = ?, Company = ?, ProPoint = ?, ProPrice = ?,  WHERE ProductID = ?",
+        [product.ProductName, product.Picture, product.PPoint, product.Price, product.Volume, product.Description, product.Company,
+        product.ProPoint, product.product.ProPrice, ProductID], function(err, res) {
         if(err) {
             console.log("error: ", err);
             result(null,err);
