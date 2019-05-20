@@ -14,6 +14,7 @@ const Event = function(event){
 };
 
 Event.createEvent = function(newEvent,result){
+    newEvent.EventID=null;
     sql.query("INSERT INTO eventtable set ?",newEvent,function(err,res){
         if(err) {
             console.log("error: ", err);
