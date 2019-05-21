@@ -19,7 +19,7 @@ exports.create_place = function(req, res) {
     const new_place = new Place(req.body);
   
     //handles null error 
-    if(!new_place.PlaceID||!new_place.PlaceName
+    if(!new_place.PlaceName
         ||!new_place.latitude||!new_place.longitude){ 
         res.status(400).send({ error:true, 
             message: 'Please provide information' });
