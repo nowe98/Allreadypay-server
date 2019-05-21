@@ -30,6 +30,8 @@ app.use(cors(corsOption));
 const router = require('./app/routes'); //importing route
 app.use('/v1/',router); //register the route
 
+
+
 // const axios = require('axios')
 // const sql =require('./config/db')
 

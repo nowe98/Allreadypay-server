@@ -29,38 +29,55 @@ exports.create_recent = async function(req, res) {
       amount = rest[0].Amount;
       console.log(amount)
       if(amount<=0||!amount){
-        console.log("hi",amount);
         res.status(401).send({ error:true, message: 'out of stock' });
       }
+
       else{
         Product.getProductById(new_recent.ProductID, function(err, product) {
           if(err)
             console.log(err);
-          Machine.updatesales(new_recent.MachineID,product[0].Price);
-          axios.put('http://localhost:3001/users/'+ new_recent.MobileNum,
-            {
-              balance: { 'balance':product[0].Price}
-            },
-            {
-              headers: { 'Content-Type' : 'application/json' }
-            });
+          else {
+            axios.get('http://localhost:3001/users/'+ new_recent.MobileNum)
+            .then(function(response) {
+              if(response.data.balance<product[0].Price){
+                res.status(400).json({ error:true, message: 'balance not enough' });
+              }
+              else {
+                console.log("success");
+                Machine.updatesales(new_recent.MachineID,product[0].Price);
+                axios.put('http://localhost:3001/users/'+ new_recent.MobileNum,
+                  {
+                    balance: { 'balance':product[0].Price}
+                  },
+                  {
+                    headers: { 'Content-Type' : 'application/json' }
+                });
+                Product.updateSales(new_recent.ProductID);
+                Slot.decreaseAmount(new_recent.MachineID,new_recent.ProductID);
+                Recent.createRecent(new_recent, function(err,r) {
+                  if (err)
+                    res.send(err);
+                  else
+                    res.json({"status":200,"message":"Add table complete."});
+                
+                });
+                axios.get('http://172.20.10.9:5000/runvend/'+new_recent.ProductID)
+                  .then((res) => {
+                      //console.log(`statusCode: ${res.statusCode}`)
+                      console.log(res.data)
+                })
+                .catch((error) => {
+                      console.error(error)
+                })
+              
+
+
+              }
+            })
+         
+          }
         })
-        Product.updateSales(new_recent.ProductID);
-        Slot.decreaseAmount(new_recent.MachineID,new_recent.ProductID);
-        Recent.createRecent(new_recent, function(err,r) {
-            if (err)
-              res.send(err);
-            else
-              res.json({"status":200,"message":"Add table complete."});
-        });
-        axios.get('http://192.168.1.132:5000/runvend/'+new_recent.ProductID)
-        .then((res) => {
-            //console.log(`statusCode: ${res.statusCode}`)
-            console.log(res.data)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+        
           
       }
     });
