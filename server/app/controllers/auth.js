@@ -41,7 +41,7 @@ exports.login_admin = function(req, res, next) {
       admin[0].Pass
     let valid = Admin.validatePassword(admin[0],Pass)
     if(!valid)
-      res.status(401).send('Password not match')
+      res.status(204).send('Password not match')
     req.auth ={
       id: AdminID,
       type: 'admin',
