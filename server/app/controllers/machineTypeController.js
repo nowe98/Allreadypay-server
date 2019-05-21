@@ -9,9 +9,10 @@ exports.list_all_types = function (req, res) {
         if (err)
             res.send(err);
 
-        
-        console.log('res', types);
-        res.json({"status":200,"message":"Data fetched successfully!", "ProductList":types});
+        else {
+          console.log('res', types);
+          res.json({"status":200,"message":"Data fetched successfully!", "ProductList":types});
+        }
 
 });
 };
@@ -26,7 +27,8 @@ exports.create_types = function(req, res) {
         Type.createTypeMachine(new_type, function(err, type) {
             if (err)
                 res.send(err);
-            res.json(type);
+            else
+              res.json(type);
         });
   }
 }
@@ -35,7 +37,8 @@ exports.read_a_type = function(req, res) {
     Type.getTypemachineById(req.params.MachineType, function(err, type) {
       if (err)
         res.send(err);
-      res.json(type[0]);
+      else
+        res.json(type[0]);
     })
 }
 
@@ -43,6 +46,8 @@ exports.delete_a_type = function(req, res) {
     Type.delete( req.params.MachineType, function(err, type) {
       if (err)
         res.send(err);
+      if(type.errno==1451)
+        res.status(400).send({ error:true, message: 'have foreign key' });
       res.json({ message: 'Type successfully deleted' });
     })
 }

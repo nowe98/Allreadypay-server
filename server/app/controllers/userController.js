@@ -9,8 +9,10 @@ exports.list_all_users = function (req, res) {
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', user);
-        res.send(user);
+        else {
+          console.log('res', user);
+          res.send(user);
+        }
     });
 };
 
@@ -26,7 +28,8 @@ exports.create_user = function(req, res) {
         User.createUser(new_user, function(err, user) {
             if (err)
                 res.send(err);
-            res.json(user);
+            else
+              res.json(user);
         });
   }
 }
@@ -35,7 +38,8 @@ exports.read_a_user = function(req, res) {
     User.getUserById(req.params.MobileNum, function(err, user) {
       if (err)
         res.send(err);
-      res.json(user[0]);
+      else
+        res.json(user[0]);
     })
 }
 
@@ -43,7 +47,8 @@ exports.update_a_user = function(req, res) {
     User.updateById(req.params.MobileNum, new User(req.body), function(err, user) {
       if (err)
         res.send(err);
-      res.json(user);
+      else
+        res.json(user);
     })
 }
 
@@ -51,7 +56,10 @@ exports.delete_a_user = function(req, res) {
     User.delete( req.params.MobileNum, function(err, user) {
       if (err)
         res.send(err);
-      res.json({ message: 'User successfully deleted' });
+      if(user.errno==1451)
+          res.status(400).send({ error:true, message: 'have foreign key' });
+      else
+        res.json({ message: 'User successfully deleted' });
     })
 }
 

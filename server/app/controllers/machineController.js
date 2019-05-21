@@ -9,17 +9,19 @@ exports.list_all_machines = function (req, res) {
       if (err)
           res.send(err);
 
-      const newmachines = machines.map((machine) => ({
-        vending_ID: machine.MachineID,
-        vending_type: machine.MachineType,
-        place_ID:machine.PlaceID,
-        vending_name: machine.MachineName,
-        status: machine.mstatus
+      else {   
+        const newmachines = machines.map((machine) => ({
+          vending_ID: machine.MachineID,
+          vending_type: machine.MachineType,
+          place_ID:machine.PlaceID,
+          vending_name: machine.MachineName,
+          status: machine.mstatus
 
-      }));
-      
-      console.log('res', newmachines);
-      res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":newmachines});
+        }));
+        
+        console.log('res', newmachines);
+        res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":newmachines});
+      }
     });
 };
 
@@ -29,9 +31,10 @@ exports.list_all_machines_admin = function (req, res) {
     if (err)
       res.send(err);
     
-    
-    console.log('res', machines);
-    res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":machines});
+    else{
+      console.log('res', machines);
+      res.json({"status":200,"message":"Data fetched successfully!", "VendInPlace":machines});
+    }
   });
 };
 
@@ -47,7 +50,8 @@ exports.create_machine = function(req, res) {
         Machine.createMachine(new_machine, function(err, machine) {
             if (err)
                 res.send(err);
-            res.json(machine);
+            else
+              res.json(machine);
         });
   }
 }
@@ -56,7 +60,8 @@ exports.read_a_machine = function(req, res) {
     Machine.getMachineById(req.params.MachineID, function(err, machine) {
       if (err)
         res.send(err);
-      res.json(machine[0]);
+      else
+        res.json(machine[0]);
     })
 }
 
@@ -64,7 +69,8 @@ exports.update_a_machine = function(req, res) {
     Machine.updateById(req.params.MachineID, new Machine(req.body), function(err, machine) {
       if (err)
         res.send(err);
-      res.json(machine);
+      else
+        res.json(machine);
     })
 }
 
@@ -72,7 +78,10 @@ exports.delete_a_machine = function(req, res) {
     Machine.delete( req.params.MachineID, function(err, machine) {
       if (err)
         res.send(err);
-      res.json({ message: 'Machine successfully deleted' });
+      if(machine.errno==1451)
+        res.status(400).send({ error:true, message: 'have foreign key' });
+      else
+        res.json({ message: 'Machine successfully deleted' });
     })
 }
 
@@ -87,11 +96,15 @@ var getClientAddress = function (req) {
 
 exports.update_ip = function(req, res) {
   var ipAddress = getClientAddress(req).split(':')[3];
+  //var ipAddress = getClientAddress(req);
   
   Machine.updateip(req.params.MachineID, ipAddress, function(err, machine) {
     if (err)
       res.send(err);
-    res.json(machine);
+    if(machine.errno==1451)
+      res.status(400).send({ error:true, message: 'have foreign key' });
+    else
+      res.json(machine);
   })
 }
 

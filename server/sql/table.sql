@@ -111,7 +111,7 @@ create table if not exists promotionMember(
     foreign key (AdminID)
     references admin(AdminID)
 );
-
+select * from eventtable;
 create table if not exists eventtable(
 	EventID tinyint(20) not null primary key auto_increment,
     EventName varchar(50),

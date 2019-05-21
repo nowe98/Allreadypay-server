@@ -8,9 +8,10 @@ exports.list_all_places = function (req, res) {
         console.log('Place controller')
         if (err)
             res.send(err);
-        
-        console.log('res', places);
-        res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":places});
+        else {
+          console.log('res', places);
+          res.json({"status":200,"message":"Data fetched successfully!", "PlaceList":places});
+        }  
 
 });
 };
@@ -27,7 +28,8 @@ exports.create_place = function(req, res) {
         Place.createPlace(new_place, function(err, place) {
             if (err)
                 res.send(err);
-            res.json(place);
+            else
+              res.json(place);
         });
   }
 }
@@ -36,7 +38,8 @@ exports.read_a_place = function(req, res) {
     Place.getPlaceById(req.params.PlaceID, function(err, place) {
       if (err)
         res.send(err);
-      res.json(place[0]);
+      else
+        res.json(place[0]);
     })
 }
 
@@ -44,6 +47,8 @@ exports.update_a_place = function(req, res) {
     Place.updateById(req.params.PlaceID, new Place(req.body), function(err, place) {
       if (err)
         res.send(err);
+      if(place.errno==1451)
+        res.status(400).send({ error:true, message: 'have foreign key' });
       res.json(place);
     })
 }

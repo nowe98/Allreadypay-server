@@ -7,9 +7,10 @@ exports.list_all_events = function (req, res) {
 
         if (err)
             res.send(err);
-        
-        console.log('res', events);
-        res.json({"status":200,"message":"Data fetched successfully!", "EventList":events});
+        else {
+          console.log('res', events);
+          res.json({"status":200,"message":"Data fetched successfully!", "EventList":events});
+        }
 
 });
 };
@@ -17,7 +18,7 @@ exports.create_event = function(req, res) {
     const new_event = new Event(req.body);
   
     //handles null error 
-    if(!new_event.AdminID||!new_event.EventName){ 
+    if(!new_event.EventName){ 
         res.status(400).send({ error:true, 
             message: 'Please provide information' });
     }
@@ -25,7 +26,8 @@ exports.create_event = function(req, res) {
         Event.createEvent(new_event, function(err, event) {
             if (err)
                 res.send(err);
-            res.json(event);
+            else
+              res.json(event);
         });
   }
 }
@@ -34,7 +36,8 @@ exports.read_a_event = function(req, res) {
     Event.getEventById(req.params.EventID, function(err, event) {
       if (err)
         res.send(err);
-      res.json(event[0]);
+      else
+        res.json(event[0]);
     })
 }
 
@@ -42,7 +45,8 @@ exports.update_a_event = function(req, res) {
     Event.updateById(req.params.EventID, new Event(req.body), function(err, event) {
       if (err)
         res.send(err);
-      res.json(event);
+      else
+        res.json(event);
     })
 }
 
@@ -50,6 +54,9 @@ exports.delete_a_event = function(req, res) {
     Event.delete( req.params.EventID, function(err, event) {
       if (err)
         res.send(err);
-      res.json({ message: 'Place successfully deleted' });
+      if(event.errno==1451)
+        res.status(400).send({ error:true, message: 'have foreign key' });
+      else
+        res.json({ message: 'Place successfully deleted' });
     })
 }

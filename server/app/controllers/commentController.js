@@ -8,9 +8,10 @@ exports.list_all_comments = function (req, res) {
       console.log('Comments controller')
       if (err)
           res.send(err);
-
-      console.log('res', comments);
-      res.json({"status":200,"message":"Data fetched successfully!", "Comments":comments});
+      else {
+        console.log('res', comments);
+        res.json({"status":200,"message":"Data fetched successfully!", "Comments":comments});
+      }
     });
 };
 
@@ -25,7 +26,8 @@ exports.create_comment = function(req, res) {
        Comment.createComment(new_comment, function(err,r) {
             if (err)
                 res.send(err);
-            res.json({"status":200,"message":"Add table complete."});
+            else
+              res.json({"status":200,"message":"Add table complete."});
         });
   }
 };
@@ -34,7 +36,8 @@ exports.read_a_comment_by_id = function(req, res) {
     Comment.getCommentByProductID(req.params.ProductID, function(err, comment) {
       if (err)
         res.send(err);
-      res.json(comment);
+      else
+        res.json(comment);
     })
 }
 

@@ -11,9 +11,10 @@ exports.list_all_recents = function (req, res) {
 
       if (err)
           res.send(err);
-
-      console.log('res', recents);
-      res.json({"status":200,"message":"Data fetched successfully!", "Recent":recents});
+      else {
+        console.log('res', recents);
+        res.json({"status":200,"message":"Data fetched successfully!", "Recent":recents});
+      }
     });
 };
 
@@ -49,7 +50,8 @@ exports.create_recent = async function(req, res) {
         Recent.createRecent(new_recent, function(err,r) {
             if (err)
               res.send(err);
-            res.json({"status":200,"message":"Add table complete."});
+            else
+              res.json({"status":200,"message":"Add table complete."});
         });
         axios.get('http://192.168.1.132:5000/runvend/'+new_recent.ProductID)
         .then((res) => {
@@ -74,13 +76,15 @@ exports.read_a_recent = function(req, res) {
     Recent.getRecentById(req.params.RecentID, function(err, recent) {
       if (err)
         res.send(err);
-      res.json(recent[0]);
+      else
+        res.json(recent[0]);
     })
 }
 exports.list_recent_by_user = function(req, res) {
   Recent.getRecentByUser(req.params.MobileNum, function(err, recents) {
     if (err)
       res.send(err);
+    else
       res.json({"status":200,"message":"Data fetched successfully!", "Recent":recents});
   })
 }
